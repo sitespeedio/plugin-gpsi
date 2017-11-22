@@ -20,20 +20,20 @@ h3 Page metrics
         tr
           th(colspan='2') Resources
         tr
-          td Requests
+          td Total Requests
           +numberCell('', gpsiSummary.pageStats.numberResources)
         tr
           td Static Requests
-          +numberCell('', gpsiSummary.pageStats.numberStaticResources)
+          +numberCell('', gpsiSummary.pageStats.numberStaticResources || 0)
         tr
           td CSS Requests
-          +numberCell('', gpsiSummary.pageStats.numberCssResources)
+          +numberCell('', gpsiSummary.pageStats.numberCssResources || 0)
         tr
           td JavaScript Requests
-          +numberCell('', gpsiSummary.pageStats.numberJsResources)
+          +numberCell('', gpsiSummary.pageStats.numberJsResources || 0 )
         tr
           td Hosts
-          +numberCell('', gpsiSummary.pageStats.numberHosts)
+          +numberCell('', gpsiSummary.pageStats.numberHosts || 0)
   .one-half.column
     table
       thead
