@@ -20,3 +20,6 @@ bin/sitespeed.js --plugins.add ../plugin-gpsi/lib/ --gpsi.key YOUR_SECRET_KEY ht
 
 ## Run in production
 If you want to run GPSI with your other sitespeed.io test, follow the instructions in the [add a plugin docs](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#add-a-plugin).
+
+## sitespeed.io version
+You need sitespeed.io 6.0 or later to run the plugin.
