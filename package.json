@@ -35,7 +35,7 @@
     "prettier": "~1.5.3"
   },
   "dependencies": {
-    "gpagespeed": "5.0.3"
+    "gpagespeed": "6.0.6"
   },
   "scripts": {
     "lint": "eslint .",
