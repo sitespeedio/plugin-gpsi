@@ -13,50 +13,54 @@ h2 Google Page Speed Insights
 //- p #{JSON.stringify(pageInfo.data.gpsi.pageSummary)}
 
 h3 Page metrics
-.row
-  .one-half.column
-    table
-      thead
-        tr
-          th(colspan='2') Resources
-        tr
-          td Total Requests
-          +numberCell('', gpsiSummary.pageStats.numberResources)
-        tr
-          td Static Requests
-          +numberCell('', gpsiSummary.pageStats.numberStaticResources || 0)
-        tr
-          td CSS Requests
-          +numberCell('', gpsiSummary.pageStats.numberCssResources || 0)
-        tr
-          td JavaScript Requests
-          +numberCell('', gpsiSummary.pageStats.numberJsResources || 0 )
-        tr
-          td Hosts
-          +numberCell('', gpsiSummary.pageStats.numberHosts || 0)
-  .one-half.column
-    table
-      thead
-        tr
-          th(colspan='2') Sizes
-        tr
-          td Total request size
-          +sizeCell('', gpsiSummary.pageStats.totalRequestBytes)
-        tr
-          td HTML size
-          +sizeCell('', gpsiSummary.pageStats.htmlResponseBytes)
-        tr
-          td Images size
-          +sizeCell('', gpsiSummary.pageStats.imageResponseBytes)
-        tr
-          td CSS size
-          +sizeCell('', gpsiSummary.pageStats.cssResponseBytes)
-        tr
-          td JavaScript size
-          +sizeCell('', gpsiSummary.pageStats.javascriptResponseBytes)
-        tr
-          td Others size
-          +sizeCell('', gpsiSummary.pageStats.otherResponseBytes)
+//- See https://github.com/sitespeedio/sitespeed.io/issues/2499
+if gpsiSummary.pageStats
+  .row
+    .one-half.column
+      table
+        thead
+          tr
+            th(colspan='2') Resources
+          tr
+            td Total Requests
+            +numberCell('', gpsiSummary.pageStats.numberResources)
+          tr
+            td Static Requests
+            +numberCell('', gpsiSummary.pageStats.numberStaticResources || 0)
+          tr
+            td CSS Requests
+            +numberCell('', gpsiSummary.pageStats.numberCssResources || 0)
+          tr
+            td JavaScript Requests
+            +numberCell('', gpsiSummary.pageStats.numberJsResources || 0 )
+          tr
+            td Hosts
+            +numberCell('', gpsiSummary.pageStats.numberHosts || 0)
+    .one-half.column
+      table
+        thead
+          tr
+            th(colspan='2') Sizes
+          tr
+            td Total request size
+            +sizeCell('', gpsiSummary.pageStats.totalRequestBytes)
+          tr
+            td HTML size
+            +sizeCell('', gpsiSummary.pageStats.htmlResponseBytes)
+          tr
+            td Images size
+            +sizeCell('', gpsiSummary.pageStats.imageResponseBytes)
+          tr
+            td CSS size
+            +sizeCell('', gpsiSummary.pageStats.cssResponseBytes)
+          tr
+            td JavaScript size
+            +sizeCell('', gpsiSummary.pageStats.javascriptResponseBytes)
+          tr
+            td Others size
+            +sizeCell('', gpsiSummary.pageStats.otherResponseBytes)
+else
+  p Missing page statistics from GPSI.
 
 h3 Total performance score #{gpsiSummary.ruleGroups.SPEED.score}
 
