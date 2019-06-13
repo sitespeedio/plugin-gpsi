@@ -73,7 +73,7 @@ if gpsiSummary.ruleGroups
           th Summary
           th Impact
       tbody
-      each rule, name in gpsiSummary.formattedResults.ruleRescults
+      each rule, name in gpsiSummary.formattedResults.ruleResults
         if (rule.ruleImpact > 0)
           tr
             td(data-title='Name') #{rule.localizedRuleName}
