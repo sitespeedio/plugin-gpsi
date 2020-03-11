@@ -7,79 +7,74 @@ mixin sizeCell(title, size)
 a
 h2 Google Page Speed Insights
 
-- var gpsiSummary = pageInfo.data.gpsi.pageSummary
-
-p #{gpsiSummary.data.lighthouseResult.categories.performance.score * 100}
+- const gpsiSummary = pageInfo.data.gpsi.pageSummary.data
 //- This is how you can see all the content sent from GPSI
-//- p #{JSON.stringify(pageInfo.data.gpsi.pageSummary)}
+//- p #{JSON.stringify(gpgpsiSummary)}
 
-h3 Page metrics
-//- See https://github.com/sitespeedio/sitespeed.io/issues/2499
-if gpsiSummary.pageStats
-  .row
-    .one-half.column
-      table
-        thead
-          tr
-            th(colspan='2') Resources
-          tr
-            td Total Requests
-            +numberCell('', gpsiSummary.pageStats.numberResources)
-          tr
-            td Static Requests
-            +numberCell('', gpsiSummary.pageStats.numberStaticResources || 0)
-          tr
-            td CSS Requests
-            +numberCell('', gpsiSummary.pageStats.numberCssResources || 0)
-          tr
-            td JavaScript Requests
-            +numberCell('', gpsiSummary.pageStats.numberJsResources || 0 )
-          tr
-            td Hosts
-            +numberCell('', gpsiSummary.pageStats.numberHosts || 0)
-    .one-half.column
-      table
-        thead
-          tr
-            th(colspan='2') Sizes
-          tr
-            td Total request size
-            +sizeCell('', gpsiSummary.pageStats.totalRequestBytes)
-          tr
-            td HTML size
-            +sizeCell('', gpsiSummary.pageStats.htmlResponseBytes)
-          tr
-            td Images size
-            +sizeCell('', gpsiSummary.pageStats.imageResponseBytes)
-          tr
-            td CSS size
-            +sizeCell('', gpsiSummary.pageStats.cssResponseBytes)
-          tr
-            td JavaScript size
-            +sizeCell('', gpsiSummary.pageStats.javascriptResponseBytes)
-          tr
-            td Others size
-            +sizeCell('', gpsiSummary.pageStats.otherResponseBytes)
-else
-  p Missing page statistics from GPSI.
-
-if gpsiSummary.ruleGroups
-  h3 Total performance score #{gpsiSummary.ruleGroups.SPEED.score}
-
-  .responsive
-    table
+h3 Lighthouse score
+p Using Lighthouse version #{gpsiSummary.lighthouseResult.lighthouseVersion}
+table
       thead
         tr
-          th Rule name
-          th Summary
-          th Impact
+          th Performance
+          th SEO
+          th Accessibility
+          th Best practices
+          th PWA
       tbody
-      each rule, name in gpsiSummary.formattedResults.ruleResults
-        if (rule.ruleImpact > 0)
-          tr
-            td(data-title='Name') #{rule.localizedRuleName}
-            if rule.summary
-              td.url(data-title='Summary') #{rule.summary.format}
-            else
-              td.url(data-title='Summary') No summary.
-            td(data-title='Impact')  #{rule.ruleImpact}
+        tr
+          td #{Number(gpsiSummary.lighthouseResult.categories.performance.score * 100).toFixed(0)}
+          td #{Number(gpsiSummary.lighthouseResult.categories.seo.score * 100).toFixed(0)}
+          td #{Number(gpsiSummary.lighthouseResult.categories.accessibility.score * 100).toFixed(0)}
+          td #{Number(gpsiSummary.lighthouseResult.categories['best-practices'].score * 100).toFixed(0)}
+          td #{Number(gpsiSummary.lighthouseResult.categories.pwa.score * 100).toFixed(0)}        
+
+h3 Data from the field
+
+
+- const experiences = ['loadingExperience','originLoadingExperience'];
+- const metrics = {FIRST_CONTENTFUL_PAINT_MS:'First Contentful Paint (FCP)',FIRST_INPUT_DELAY_MS:'First Input Delay (FID)'}; 
+
+each experience in experiences
+  if experience === 'loadingExperience'
+    p Over the last 30 days, the field data shows that this page has an #{gpsiSummary.loadingExperience.overall_category} speed compared to other pages in the Chrome User Experience Report. We are showing the 75th percentile of FCP and the 95th percentile of FID.
+  else 
+    h4 All pages served from this origin
+    p All pages served from this origin have an #{gpsiSummary.originLoadingExperience.overall_category} speed compared to other pages in the Chrome User Experience Report over the last 30 days.
+  table
+    thead
+      tr
+        th Metric
+        th Value
+        th Category
+    tbody
+      each name, key in metrics
+        tr
+          td #{name}
+          td #{gpsiSummary[experience].metrics[key].percentile} ms
+          td #{gpsiSummary[experience].metrics[key].category} 
+        
+  h4 Distribution
+
+  table
+     each name, key in metrics
+        tr
+          th #{name}
+          th Min
+          th Max
+          th Users
+        tr
+          td Fast
+          td #{gpsiSummary[experience].metrics[key].distributions[0].min}
+          td #{gpsiSummary[experience].metrics[key].distributions[0].max}
+          td #{Number(gpsiSummary[experience].metrics[key].distributions[0].proportion * 100).toFixed(2)} %
+        tr
+          td Moderate
+          td #{gpsiSummary[experience].metrics[key].distributions[1].min}
+          td #{gpsiSummary[experience].metrics[key].distributions[1].max}
+          td #{Number(gpsiSummary[experience].metrics[key].distributions[1].proportion * 100).toFixed(2)} %
+        tr
+          td Slow
+          td #{gpsiSummary[experience].metrics[key].distributions[2].min}
+          td #{gpsiSummary[experience].metrics[key].distributions[2].max}
+          td #{Number(gpsiSummary[experience].metrics[key].distributions[2].proportion * 100).toFixed(2)} %
