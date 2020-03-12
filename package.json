@@ -29,7 +29,7 @@
     "url": "https://github.com/sitespeedio/plugin-gpsi/issues"
   },
   "devDependencies": {
-    "eslint": "~4.5.0",
+    "eslint": "~4.18.2",
     "eslint-config-prettier": "~2.3.0",
     "eslint-plugin-prettier": "~2.1.2",
     "prettier": "~1.5.3"
