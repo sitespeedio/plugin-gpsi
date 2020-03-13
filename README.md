@@ -28,3 +28,13 @@ You need sitespeed.io 6.0 or later to run the plugin.
 
 ## How do I know it works?
 You will get an extra tab called GPSI on each individual URL that you test.
+
+## GPSI vs Lighthoue
+GPSI runs Lighthouse in the backend. You can see which Lighthouse version in the HTML produced by the plugin. The plugin collects accessibility, seo, pwa, best-practices and performance scores.
+
+## Data sent to Graphite/InfluxDB
+By default the plugin sends the GSPI score for the tested page for the five categories: accessibility, seo, pwa, best-practices and performance.
+
+It also sends the loadingExperience for the page. That includes the actual percentile for First Contentful Paint and First Input Delay and the percentage of fast/moderate/slow users.
+
+And it also sends a summary on domain level for the loading experience, meaning you can keep track of those metrics by running the plugin once a day.
