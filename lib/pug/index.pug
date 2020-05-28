@@ -32,7 +32,7 @@ table
 h3 Data from the field
 
 - const experiences = ['loadingExperience','originLoadingExperience'];
-- const metrics = {FIRST_CONTENTFUL_PAINT_MS:'First Contentful Paint (FCP)',FIRST_INPUT_DELAY_MS:'First Input Delay (FID)'}; 
+- const metrics = {FIRST_CONTENTFUL_PAINT_MS:'First Contentful Paint (FCP)', LARGEST_CONTENTFUL_PAINT_MS: 'Largest Contentful Paint (LCP)', FIRST_INPUT_DELAY_MS:'First Input Delay (FID)', CUMULATIVE_LAYOUT_SHIFT_SCORE: 'Cumulative Layout Shift'}; 
 
 each experience in experiences
   if (gpsiSummary[experience] && gpsiSummary[experience].metrics)
@@ -51,7 +51,7 @@ each experience in experiences
         each name, key in metrics
           tr
             td #{name}
-            td #{gpsiSummary[experience].metrics[key].percentile} ms
+            td #{gpsiSummary[experience].metrics[key].percentile} #{key.indexOf('SCORE') > -1 ? '': 'ms'}
             td #{gpsiSummary[experience].metrics[key].category} 
           
     h4 Distribution
