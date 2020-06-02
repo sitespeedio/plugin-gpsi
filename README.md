@@ -7,7 +7,7 @@ Run by giving **--gpsi.key YOUR_GPSI_KEY** to sitespeed.io.
 
 You can read more about sitespeed.io plugins [here](https://www.sitespeed.io/documentation/sitespeed.io/plugins/). 
 
-Get your [GSPI key from Google](https://support.google.com/cloud/answer/6158862).
+Get your [GPSI key from Google](https://support.google.com/cloud/answer/6158862).
 
 ## Test with current master
 
@@ -33,7 +33,7 @@ You will get an extra tab called GPSI on each individual URL that you test.
 GPSI runs Lighthouse in the backend. You can see which Lighthouse version in the HTML produced by the plugin. The plugin collects accessibility, seo, pwa, best-practices and performance scores.
 
 ## Data sent to Graphite/InfluxDB
-By default the plugin sends the GSPI score for the tested page for the five categories: accessibility, seo, pwa, best-practices and performance.
+By default the plugin sends the GPSI score for the tested page for the five categories: accessibility, seo, pwa, best-practices and performance.
 
 It also sends the loadingExperience for the page. That includes the actual percentile for First Contentful Paint and First Input Delay and the percentage of fast/moderate/slow users.
 
