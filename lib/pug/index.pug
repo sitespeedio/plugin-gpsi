@@ -29,6 +29,21 @@ table
           td #{Number(gpsiSummary.lighthouseResult.categories['best-practices'].score * 100).toFixed(0)}
           td #{Number(gpsiSummary.lighthouseResult.categories.pwa.score * 100).toFixed(0)}        
 
+h3 Google Web Vitals
+table
+      thead
+        tr
+          th First Contentful Paint
+          th Largest Contentful Paint
+          th Total Blocking Time
+          th Cumulative Layout Shift
+      tbody
+        tr
+          td #{h.time.ms(gpsiSummary.lighthouseResult.audits['first-contentful-paint'].numericValue)}
+          td #{h.time.ms(gpsiSummary.lighthouseResult.audits['largest-contentful-paint'].numericValue)}
+          td #{h.time.ms(gpsiSummary.lighthouseResult.audits['total-blocking-time'].numericValue)}
+          td #{gpsiSummary.lighthouseResult.audits['cumulative-layout-shift'].numericValue}
+
 h3 Data from the field
 
 - const experiences = ['loadingExperience','originLoadingExperience'];
