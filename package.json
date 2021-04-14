@@ -1,6 +1,6 @@
 {
   "name": "@sitespeed.io/plugin-gpsi",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "GPSI plugin for sitespeed.io",
   "publishConfig": {
     "access": "public"
