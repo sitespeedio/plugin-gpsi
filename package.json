@@ -38,7 +38,7 @@
     "prettier": "~1.5.3"
   },
   "dependencies": {
-    "psi": "4.0.1"
+    "psi": "4.1.0"
   },
   "scripts": {
     "lint": "eslint .",
