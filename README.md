@@ -17,7 +17,7 @@ If you have checked out as the same level as sitespeed.io you run it like this (
 git clone https://github.com/sitespeedio/sitespeed.io.git
 cd sitespeed.io
 npm install
-bin/sitespeed.js --plugins.add ../plugin-gpsi/lib/ --gpsi.key YOUR_SECRET_KEY https://www.sitespeed.io/ -n 1
+bin/sitespeed.js --plugins.add ../plugin-gpsi/lib/index.js --gpsi.key YOUR_SECRET_KEY https://www.sitespeed.io/ -n 1
 ```
 
 ## Run in production
