@@ -1,6 +1,6 @@
 {
   "name": "@sitespeed.io/plugin-gpsi",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "description": "GPSI plugin for sitespeed.io",
   "publishConfig": {
