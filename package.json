@@ -42,7 +42,7 @@
   "dependencies": {
     "lodash.get": "4.4.2",
     "psi": "4.1.0",
-    "@sitespeed.io/plugin": "0.0.6"
+    "@sitespeed.io/plugin": "1.0.0"
   },
   "scripts": {
     "lint": "eslint .",
