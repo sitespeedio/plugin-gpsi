@@ -48,7 +48,7 @@ h3 Data from the field
 - const metrics = {FIRST_CONTENTFUL_PAINT_MS:'First Contentful Paint (FCP)', LARGEST_CONTENTFUL_PAINT_MS: 'Largest Contentful Paint (LCP)', FIRST_INPUT_DELAY_MS:'First Input Delay (FID)', CUMULATIVE_LAYOUT_SHIFT_SCORE: 'Cumulative Layout Shift (CLS)', EXPERIMENTAL_TIME_TO_FIRST_BYTE: 'Time to first byte (TTFB)', INTERACTION_TO_NEXT_PAINT: 'Interaction To Next Paint (INP)'}; 
 
 each experience in experiences
-  if (gpsiSummary[experience] && gpsiSummary[experience].metrics)
+  if (gpsiSummary[experience] && gpsiSummary[experience].metrics && (experience !== 'loadingExperience' || !gpsiSummary[experience]["origin_fallback"]))
     if experience === 'loadingExperience'
       p Over the last 30 days, the field data shows that this page has an #{gpsiSummary.loadingExperience.overall_category} speed compared to other pages in the Chrome User Experience Report. We are showing the 75th percentile of FCP and the 95th percentile of FID.
     else 
